@@ -30,5 +30,6 @@ module.exports = {
                 tabWidth: 4,
             },
         ],
+        "no-console": "error",
     },
 };
