@@ -3,3 +3,8 @@ export interface IPost {
     content: string;
     categories: string[];
 }
+
+export interface IPostAll {
+    posts: IPost[];
+    quantidade: number;
+}

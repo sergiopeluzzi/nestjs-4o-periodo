@@ -1,5 +1,5 @@
 import { Module } from "@nestjs/common";
-import { MongooseModule } from "@nestjs/mongoose";
+import { ModelDefinition, MongooseModule } from "@nestjs/mongoose";
 
 @Module({})
 export class DatabaseModule {
@@ -7,5 +7,9 @@ export class DatabaseModule {
         return MongooseModule.forRoot(process.env.DB_CONNECTION_STRING, {
             dbName: process.env.DB_NAME,
         });
+    }
+
+    static forFeature(models: ModelDefinition[]) {
+        return MongooseModule.forFeature(models);
     }
 }
