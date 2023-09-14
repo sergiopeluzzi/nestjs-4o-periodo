@@ -2,14 +2,22 @@ import { HydratedDocument } from "mongoose";
 import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
 import { IUser } from "src/shared/interfaces/user.interface";
 
+const transformUser = (doc: any, ret: any) => {
+    ret.id = ret._id;
+
+    delete ret._id;
+    delete ret.__v;
+    delete ret.senha;
+};
+
 export type UserDocument = HydratedDocument<User>;
 
 @Schema({
     timestamps: true,
     collection: "users",
     virtuals: true,
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true },
+    toJSON: { virtuals: true, transform: transformUser },
+    toObject: { virtuals: true, transform: transformUser },
 })
 export class User implements IUser {
     @Prop({ required: true })

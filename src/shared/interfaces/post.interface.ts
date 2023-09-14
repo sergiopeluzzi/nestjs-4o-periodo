@@ -2,7 +2,7 @@ export interface IPost {
     title: string;
     content: string;
     categories: string[];
-    autor: string;
+    autorId: string;
 }
 
 export interface IPostAll {

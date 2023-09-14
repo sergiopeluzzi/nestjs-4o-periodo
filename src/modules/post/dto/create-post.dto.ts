@@ -16,5 +16,5 @@ export class CreatePostDto implements IPost {
 
     @IsNotEmpty({ message: "O autor não pode ser vazio" })
     @IsString({ message: "O autor deve ser uma string" })
-    autor: string;
+    autorId: string;
 }
