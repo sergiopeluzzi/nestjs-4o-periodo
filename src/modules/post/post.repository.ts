@@ -13,7 +13,10 @@ export class PostRepository {
     }
 
     async findAll(): Promise<IPostAll> {
-        const posts: Post[] = await this.postModel.find().exec();
+        const posts: Post[] = await this.postModel
+            .find()
+            .populate("autor")
+            .exec();
         const quantidade: number = await this.postModel.countDocuments().exec();
 
         const retorno = {

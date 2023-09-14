@@ -7,6 +7,9 @@ export type UserDocument = HydratedDocument<User>;
 @Schema({
     timestamps: true,
     collection: "users",
+    virtuals: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
 })
 export class User implements IUser {
     @Prop({ required: true })
@@ -23,5 +26,12 @@ export class User implements IUser {
 }
 
 const UserSchema = SchemaFactory.createForClass(User);
+
+UserSchema.virtual("posts", {
+    ref: "Post",
+    localField: "_id",
+    foreignField: "autor",
+    justOne: false,
+});
 
 export { UserSchema };

@@ -13,7 +13,10 @@ export class UserRepository {
     }
 
     async findAll(): Promise<IUserAll> {
-        const users: User[] = await this.userModel.find().exec();
+        const users: User[] = await this.userModel
+            .find()
+            .populate("posts")
+            .exec();
         const quantidade: number = await this.userModel.countDocuments().exec();
 
         const retorno = {

@@ -1,7 +1,6 @@
 import { HydratedDocument, Schema as MongooseSchema } from "mongoose";
 import { IPost } from "../../../shared/interfaces/post.interface";
 import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
-import { IUser } from "src/shared/interfaces/user.interface";
 
 export type PostDocument = HydratedDocument<Post>;
 
@@ -21,9 +20,16 @@ export class Post implements IPost {
     categories: string[];
 
     @Prop({ required: true, type: MongooseSchema.Types.ObjectId, ref: "User" })
-    autor: IUser;
+    autor: string;
 }
 
 const PostSchema = SchemaFactory.createForClass(Post);
+
+PostSchema.virtual("autorInfo", {
+    ref: "User",
+    localField: "autor",
+    foreignField: "_id",
+    justOne: true,
+});
 
 export { PostSchema };
