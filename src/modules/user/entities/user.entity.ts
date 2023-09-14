@@ -38,7 +38,7 @@ const UserSchema = SchemaFactory.createForClass(User);
 UserSchema.virtual("posts", {
     ref: "Post",
     localField: "_id",
-    foreignField: "autor",
+    foreignField: "autorId",
     justOne: false,
 });
 
