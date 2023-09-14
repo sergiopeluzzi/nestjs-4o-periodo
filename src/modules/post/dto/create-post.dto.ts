@@ -1,5 +1,6 @@
-import { IsNotEmpty, IsString, IsArray } from "class-validator";
+import { IsNotEmpty, IsString, IsArray, IsObject } from "class-validator";
 import { IPost } from "src/shared/interfaces/post.interface";
+import { IUser } from "src/shared/interfaces/user.interface";
 
 export class CreatePostDto implements IPost {
     @IsString({ message: "O título deve ser uma string" })
@@ -10,7 +11,11 @@ export class CreatePostDto implements IPost {
     @IsNotEmpty({ message: "O conteúdo não pode ser vazio" })
     content: string;
 
-    @IsArray({ message: "As categorias devem ser um array" })
+    @IsArray({ message: "As categorias devem ser um array", each: true })
     @IsNotEmpty({ message: "As categorias não podem ser vazias" })
     categories: string[];
+
+    @IsNotEmpty({ message: "O autor não pode ser vazio" })
+    @IsObject({ message: "O autor deve ser um objeto", each: true })
+    autor: IUser;
 }
