@@ -5,6 +5,7 @@ import { DatabaseModule } from "../database/database.module";
 import { ConfigModule } from "@nestjs/config";
 import { PostModule } from "src/modules/post/post.module";
 import { UserModule } from "src/modules/user/user.module";
+import { CategoryModule } from "src/modules/category/category.module";
 
 @Module({
     imports: [
@@ -12,6 +13,7 @@ import { UserModule } from "src/modules/user/user.module";
         DatabaseModule.forRoot(),
         PostModule,
         UserModule,
+        CategoryModule,
     ],
     controllers: [AppController],
     providers: [AppService],

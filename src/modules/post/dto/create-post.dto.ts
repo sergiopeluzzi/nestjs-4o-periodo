@@ -12,9 +12,9 @@ export class CreatePostDto implements IPost {
 
     @IsArray({ message: "As categorias devem ser um array", each: false })
     @IsNotEmpty({ message: "As categorias não podem ser vazias" })
-    categories: string[];
+    categoriesIds: string[];
 
-    @IsNotEmpty({ message: "O autor não pode ser vazio" })
-    @IsString({ message: "O autor deve ser uma string" })
-    autorId: string;
+    @IsNotEmpty({ message: "O author não pode ser vazio" })
+    @IsString({ message: "O author deve ser uma string" })
+    authorId: string;
 }

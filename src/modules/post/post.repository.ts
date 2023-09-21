@@ -12,16 +12,19 @@ export class PostRepository {
         return this.postModel.create(createPost);
     }
 
-    async findAll(): Promise<IPostAll> {
+    async findAll(filter?: any): Promise<IPostAll> {
         const posts: Post[] = await this.postModel
-            .find()
-            .populate("autor")
+            .find(filter)
+            .populate("author", "name -_id")
+            .populate("categories", "description slug -_id")
             .exec();
-        const quantidade: number = await this.postModel.countDocuments().exec();
+        const count: number = await this.postModel
+            .countDocuments(filter)
+            .exec();
 
         const retorno = {
             posts: posts,
-            quantidade: quantidade,
+            count: count,
         };
 
         return retorno;

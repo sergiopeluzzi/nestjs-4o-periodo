@@ -1,11 +1,11 @@
 export interface IUser {
-    nome: string;
-    telefone: string;
+    name: string;
+    phone: string;
     email: string;
-    senha: string;
+    password: string;
 }
 
 export interface IUserAll {
     users: IUser[];
-    quantidade: number;
+    count: number;
 }

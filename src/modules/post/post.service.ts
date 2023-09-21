@@ -11,8 +11,8 @@ export class PostService {
         return this.postRepository.create(createPostDto);
     }
 
-    findAll() {
-        return this.postRepository.findAll();
+    findAll(filter?) {
+        return this.postRepository.findAll(filter);
     }
 
     findOne(id: string) {

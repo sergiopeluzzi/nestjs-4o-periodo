@@ -1,11 +1,11 @@
 export interface IPost {
     title: string;
     content: string;
-    categories: string[];
-    autorId: string;
+    categoriesIds: string[];
+    authorId: string;
 }
 
 export interface IPostAll {
     posts: IPost[];
-    quantidade: number;
+    count: number;
 }

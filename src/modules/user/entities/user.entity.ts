@@ -7,7 +7,7 @@ const transformUser = (doc: any, ret: any) => {
 
     delete ret._id;
     delete ret.__v;
-    delete ret.senha;
+    delete ret.password;
 };
 
 export type UserDocument = HydratedDocument<User>;
@@ -15,31 +15,23 @@ export type UserDocument = HydratedDocument<User>;
 @Schema({
     timestamps: true,
     collection: "users",
-    virtuals: true,
-    toJSON: { virtuals: true, transform: transformUser },
-    toObject: { virtuals: true, transform: transformUser },
+    toJSON: { transform: transformUser },
+    toObject: { transform: transformUser },
 })
 export class User implements IUser {
     @Prop({ required: true })
-    nome: string;
+    name: string;
 
     @Prop({ required: true })
-    telefone: string;
+    phone: string;
 
     @Prop({ required: true })
     email: string;
 
     @Prop({ required: true })
-    senha: string;
+    password: string;
 }
 
 const UserSchema = SchemaFactory.createForClass(User);
-
-UserSchema.virtual("posts", {
-    ref: "Post",
-    localField: "_id",
-    foreignField: "autorId",
-    justOne: false,
-});
 
 export { UserSchema };

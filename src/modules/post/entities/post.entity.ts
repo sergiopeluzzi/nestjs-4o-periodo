@@ -25,20 +25,30 @@ export class Post implements IPost {
     @Prop({ required: true })
     content: string;
 
-    @Prop({ required: true })
-    categories: string[];
+    @Prop({
+        required: true,
+        type: [{ type: MongooseSchema.Types.ObjectId, ref: "Category" }],
+    })
+    categoriesIds: string[];
 
     @Prop({ required: true, type: MongooseSchema.Types.ObjectId, ref: "User" })
-    autorId: string;
+    authorId: string;
 }
 
 const PostSchema = SchemaFactory.createForClass(Post);
 
-PostSchema.virtual("autor", {
+PostSchema.virtual("author", {
     ref: "User",
-    localField: "autorId",
+    localField: "authorId",
     foreignField: "_id",
     justOne: true,
+});
+
+PostSchema.virtual("categories", {
+    ref: "Category",
+    localField: "categoriesIds",
+    foreignField: "_id",
+    justOne: false,
 });
 
 export { PostSchema };
