@@ -19,6 +19,8 @@ export type UserDocument = HydratedDocument<User>;
     toObject: { transform: transformUser },
 })
 export class User implements IUser {
+    id?: string;
+
     @Prop({ required: true })
     name: string;
 

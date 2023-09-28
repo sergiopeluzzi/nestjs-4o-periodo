@@ -1,7 +1,11 @@
-import { IsHash, IsNotEmpty, IsString } from "class-validator";
+import { IsHash, IsNotEmpty, IsOptional, IsString } from "class-validator";
 import { IUser } from "src/shared/interfaces/user.interface";
 
 export class CreateUserDto implements IUser {
+    @IsString({ message: "O id deve ser uma string" })
+    @IsOptional()
+    id?: string;
+
     @IsString({ message: "O name deve ser uma string" })
     @IsNotEmpty({ message: "O name não pode ser vazio" })
     name: string;

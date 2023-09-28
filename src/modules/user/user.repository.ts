@@ -28,6 +28,10 @@ export class UserRepository {
         return this.userModel.findById(id).exec();
     }
 
+    findByEmail(email: string): Promise<User> {
+        return this.userModel.findOne({ email: email }).exec();
+    }
+
     update(id: string, updateUser: Partial<IUser>): Promise<User> {
         return this.userModel
             .findByIdAndUpdate(id, updateUser, { new: true })
